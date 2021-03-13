@@ -14,7 +14,7 @@ const myList = [
       "max": 26,
       "min": 18,
       "description": "Tempestades",
-      "condition": "storm"
+      "condition": "clear_day"
     },
     {
       "date": "14/03",
@@ -22,7 +22,7 @@ const myList = [
       "max": 27,
       "min": 17,
       "description": "Tempestades",
-      "condition": "storm"
+      "condition": "clear_day"
     },
     {
       "date": "15/03",
@@ -30,7 +30,7 @@ const myList = [
       "max": 27,
       "min": 17,
       "description": "Tempestades",
-      "condition": "storm"
+      "condition": "clear_day"
     },
     {
       "date": "16/03",
