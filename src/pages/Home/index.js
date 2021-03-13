@@ -99,6 +99,11 @@ export default function Home (){
 
   const [errorMsg, setErrormsg] = useState(null);
   const [loading, setLoading] = useState(null);
+  const [weather, setWeather] = useState([]);
+         
+  const [icon, setIcon] = useState({ name: "cloud", color: "#fff" });
+  const [background, setBackground] = useState(["#1ed6ff", "#97c1ff"]);
+
 
   useEffect(()=>{
 
@@ -115,14 +120,26 @@ export default function Home (){
       // console.log(location.coords);
       // console.log(location.coords.latitude);
 
+      const response = await api.get(
+        `/weather?key=${key}&lat=${location.coords.latitude}&lon=${location.coords.longitude}`
+      );
+      // console.log(response.data); 
+
+     setWeather(response.data)
+    //  console.log(response.data.results)
+    
+    if (response.data.results.currently === "noite") {
+      setBackground(["#0c3741", "#0f2f61"]);
+    }
+
     })();
 
   },[])
 
     return(
         <SafeAreaView style={styles.container}>
-            <Menu />
-            <Header />
+            <Menu />                        
+            <Header background={background} weather={weather} icon={icon} />
             <Conditions />
 
             <FlatList 
