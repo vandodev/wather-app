@@ -8,6 +8,8 @@ import Forecast from '../../component/Forecast';
 
 import * as Location from 'expo-location';
 
+import api, {key} from '../../services/api';
+
 
 const myList = [
     {
@@ -110,7 +112,8 @@ export default function Home (){
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      console.log(location);
+      // console.log(location.coords);
+      // console.log(location.coords.latitude);
 
     })();
 
