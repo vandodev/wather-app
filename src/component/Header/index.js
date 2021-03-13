@@ -10,9 +10,8 @@ export default function Header({ background, weather, icon }){
         style={styles.header}
         colors={background}
        >
-
-        {/* <Text style={styles.date}>{weather.results.date}</Text>
-        <Text style={styles.city}>{weather.results.city_name}</Text> */}
+        <Text style={styles.datee}>{weather.results.date}</Text>
+        <Text style={styles.city}>{weather.results.city_name}</Text> 
 
         <Ionicons
             name={icon.name}
@@ -20,7 +19,7 @@ export default function Header({ background, weather, icon }){
             size={150}
         />
         
-        {/* <Text style={styles.temp}>{weather.results.temp}°</Text> */}
+        <Text style={styles.temp}>{weather.results.temp}°</Text>
         
         
        </LinearGradient>
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         borderRadius:8
     },
-    date:{
+    datee:{
         color:'#fff',
         fontSize:17,
     },

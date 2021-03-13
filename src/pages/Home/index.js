@@ -127,10 +127,24 @@ export default function Home (){
 
      setWeather(response.data)
     //  console.log(response.data.results)
-    
+
     if (response.data.results.currently === "noite") {
       setBackground(["#0c3741", "#0f2f61"]);
     }
+
+    switch (response.data.results.condition_slug) {
+      case "clear_day":
+        setIcon({ name: "partly-sunny", color: "#ffb300" });
+        break;
+      case "rain":
+        setIcon({ name: "rainy", color: "#fff" });
+        break;
+      case "storm":
+        setIcon({ name: "rainy", color: "#fff" });
+        break;
+    }
+
+    setLoading(false);
 
     })();
 
