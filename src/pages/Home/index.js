@@ -154,7 +154,7 @@ export default function Home (){
         <SafeAreaView style={styles.container}>
             <Menu />                        
             <Header background={background} weather={weather} icon={icon} />
-            <Conditions />
+            <Conditions weather={weather} />
 
             <FlatList 
                 horizontal={true}
