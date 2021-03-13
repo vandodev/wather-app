@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {SafeAreaView,StyleSheet, Text,FlatList}from 'react-native';
 
 import Menu from '../../component/Menu';
 import Header from '../../component/Header';
 import Conditions from '../../component/Conditions';
 import Forecast from '../../component/Forecast';
+
+import * as Location from 'expo-location';
 
 
 const myList = [
@@ -92,6 +94,28 @@ const myList = [
 ;
 
 export default function Home (){
+
+  const [errorMsg, setErrormsg] = useState(null);
+  const [loading, setLoading] = useState(null);
+
+  useEffect(()=>{
+
+    (async () =>{
+      let {status} =  await Location.requestPermissionsAsync();
+
+      if(status !== 'granted'){
+        setErrormsg('Permissão negada');
+        setLoading(false);
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      console.log(location);
+
+    })();
+
+  },[])
+
     return(
         <SafeAreaView style={styles.container}>
             <Menu />
