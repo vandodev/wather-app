@@ -14,7 +14,7 @@ function Routes(){
                 name="Home"
                 component={Home}
                 options={{
-                    title:'minha cidade'
+                    title:'Minha cidade'
                 }}
             />
 
