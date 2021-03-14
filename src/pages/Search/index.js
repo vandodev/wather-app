@@ -1,18 +1,40 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, SafeAreaView, TouchableOpacity, TextInput} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView, TouchableOpacity, TextInput, Keyboard} from 'react-native';
 
-import { Feather } from "@expo/vector-icons";
+import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import api, { key } from '../../services/api';
+
+   
 
 export default function Search (){
+
+    const navigation = useNavigation();
+
     const [input, setInput] = useState("");
     const [city, setCity] = useState(null);
     const [error, setError] = useState(null);
 
+    async function handleSearch() {
+        const response = await api.get(`/weather?key=${key}&city_name=${input}`);
+        
+        if (response.data.by === "default") {
+            setError("Hum, cidade não encontrada!");
+            setInput("");
+            setCity(null);
+            Keyboard.dismiss();
+            return;
+        }
+
+    }
+
     return(
         <SafeAreaView style={styles.container}>
-            <TouchableOpacity style={styles.backButton}>
-            <Feather name="chevron-left" size={32} color="#000" />
-            <Text style={{ fontSize: 22 }}>Voltar</Text>
+            <TouchableOpacity
+                style={styles.backButton}
+                onPress={() => navigation.navigate("Home")}>
+                    <Feather name="chevron-left" size={32} color="#000" />
+                    <Text style={{ fontSize: 22 }}>Voltar</Text>
             </TouchableOpacity>
 
             <View style={styles.searchBox}>
@@ -22,10 +44,12 @@ export default function Search (){
                     placeholder="Ex: Porto Alegre, RS"
                     style={styles.input}
                 />
-                <TouchableOpacity style={styles.icon} >
+                <TouchableOpacity style={styles.icon} onPress={handleSearch}>
                     <Feather name="search" size={22} color="#fff" />
                 </TouchableOpacity>
             </View>
+
+            {error && <Text style={{ marginTop: 25, fontSize: 18 }}>{error}</Text>}
 
         </SafeAreaView>
     );
