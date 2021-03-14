@@ -9,7 +9,7 @@ import {Feather, MaterialCommunityIcons} from '@expo/vector-icons';
 
             <View style={styles.conditions}>
                 <Feather name='wind' size={23} color='#1ed6ff'/>
-                <Text>{weather.results.wind_speedy}</Text>
+                {/* <Text>{weather.results.wind_speedy}</Text> */}
             </View>
 
             <View style={styles.conditions}>
